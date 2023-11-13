@@ -4,6 +4,8 @@ const bcrypt = require("bcrypt");
 const salt = 10;
 const mongoose = require("mongoose");
 const User = require("./models/user");
+const swaggerUI = require("swagger-ui-express");
+const swaggerDocument = require("./swagger-output.json");
 
 var cors = require("cors");
 const app = express();
@@ -18,6 +20,7 @@ var corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use(express.json());
 
 //Routes
